@@ -16,7 +16,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Configure Flask and SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:rishabh30@localhost:5432/alsium1_db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql+psycopg://postgres:rishabh30@localhost:5432/alsium1_db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'goa12L')  # Fallback for development only
 
@@ -125,4 +125,5 @@ def verify_payment():
         return jsonify({'error': f'Failed to verify payment or save user: {str(e)}'}), 400
 
 if __name__ == '__main__':
+
     app.run(debug=True)
