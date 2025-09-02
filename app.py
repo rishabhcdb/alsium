@@ -16,7 +16,12 @@ load_dotenv()
 app = Flask(__name__)
 
 # Configure Flask and SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql+psycopg://postgres:rishabh30@localhost:5432/alsium1_db')
+db_url = os.getenv(
+    "DATABASE_URL",
+    "postgresql://alsium3_db_user:UyYI5eW1O9ZFBso2gg0NKEatJdkAgK3v@dpg-d2ri0k3e5dus73dbl3o0-a.oregon-postgres.render.com/alsium3_db"
+)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url.replace("postgres://", "postgresql://")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'goa12L')  # Fallback for development only
 
@@ -127,3 +132,4 @@ def verify_payment():
 if __name__ == '__main__':
 
     app.run(debug=True)
+
